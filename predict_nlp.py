@@ -23,7 +23,7 @@ tokenizer.fit_on_texts(word_vocab)
 MAX_LENGTH = 8 #문장최대길이
 
 while True:
-    sentence = input('감성분석할 문장을 입력해 주세요.: ')
+    sentence = input('감정 분석 문장 입력: ')
     if sentence == '끝':
         break
     sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]','', sentence)
@@ -40,7 +40,7 @@ while True:
     predictions = float(predictions.squeeze(-1)[1])
 
     if(predictions > 0.5):
-        print("{:.2f}% 확률로 긍정 리뷰입니다.\n".format(predictions * 100))
+        print("{:.2f}% 는 긍정적 단어가 사용됨.\n".format(predictions * 100))
     else:
-        print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - predictions) * 100))
+        print("{:.2f}% 는 부정적 단어가 사용됨.\n".format((1 - predictions) * 100))
     
